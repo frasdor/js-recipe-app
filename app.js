@@ -1,5 +1,3 @@
-
-
 const itemInput = document.getElementById('itemInput');
 const addItemBtn = document.getElementById('addItemBtn');
 const itemList = document.getElementById('itemGrid');
