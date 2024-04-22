@@ -27,7 +27,11 @@ searchRecipeBtn.addEventListener('click', (e) => {
     getRecipes();
 });
 
-addRecipeBtn.addEventListener('click', addRecipe);
+resetBtn.addEventListener('click', () => {
+    recipesList.innerHTML = '';
+    inputField.value = '';
+}
+);
 
 function addItem() {
     const newItemText = itemInput.value.trim();
