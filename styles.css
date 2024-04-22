@@ -34,11 +34,10 @@ body {
 }
 .container {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     height: 100vh;
-    width: 100%;
- 
 }
 
 .topnav {
@@ -74,13 +73,112 @@ body {
     margin: 10px;
     border: 1px solid var(--primary-color);
     border-radius: 10px;
+    padding: 50px;
 }
+.recipe-app h1 {
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+#searchRecipeBtn {
+    width: 53.42858px;
+}
+
+#resetBtn {
+    width: 53.42858px;
+}
+
+#itemGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+#itemGrid li {
+    display: flex;
+    flex-direction: column;
+    background: #f4f4f4;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+#itemGrid li:hover {
+    cursor: pointer;
+}
+ 
+ul #recipesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    max-width: 300px;
+}
+
+#addRecipeBtn {
+    width: 103.42858px;
+}
+
 .my-pantry {
     display: flex;
     flex-direction: column;
+    margin: 10px;
     font-size: 1.5rem;
     margin: 10px;
     border: 1px solid var(--primary-color);
     border-radius: 10px;
+    padding: 60px;
 }
+
+#itemInput {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.recipes {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-size: 1.5rem;
+    margin: 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 60px;
  
+}
+
+#recipeInput {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.meal-plan {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-size: 1.5rem;
+    margin: 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 60px;
+ 
+}
+
+.second-part {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
