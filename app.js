@@ -4,13 +4,12 @@ const itemList = document.getElementById('itemGrid');
 
 const recipesList = document.getElementById('recipesList');
 const resetBtn = document.getElementById('resetBtn');
-const addRecipeBtn = document.getElementById('addRecipeBtn');
 const searchRecipeBtn = document.getElementById('searchRecipeBtn');
 const inputField = document.getElementById('inputField');
 
 const APP_ID = '14494e99';
 const APP_KEY = '326753c7d2788295f7e0e911fcf5fdf7';
-let inputValue =  ''; 
+let inputValue = '';
 
 
 inputField.addEventListener('change', (e) => {
@@ -45,22 +44,24 @@ function getRecipes() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            const recipes = data.hits.slice(0, 5);
-            recipes.map((item)=>{
-                const { label, url } = item.recipe;
-                recipesList.innerHTML += `<li><a class="link" href="${ url }" >${ label }</a></li>`
-            })
+            const recipes = data.hits.slice(0, 4);
+            recipes.forEach(item => {
+                const { label, url, image } = item.recipe;
+                const recipeItem = document.createElement('div');
+                const imageElement = document.createElement('img');
+                imageElement.src = image;
+                recipeItem.appendChild(imageElement);
+                const recipeLink = document.createElement('a');
+                recipeLink.classList.add('link');
+                recipeLink.href = url;
+                recipeLink.textContent = label;
+                recipeItem.appendChild(recipeLink);
+                recipesList.appendChild(recipeItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching recipes:', error);
         });
-}
-
-function addRecipe() {
-    const newRecipeText = itemInput.value.trim();
-    if (newRecipeText !== '') {
-        const li = document.createElement('li');
-        li.textContent = newRecipeText;
-        recipesList.appendChild(li);
-        itemInput.value = '';
-    }
 }
 
 resetBtn.addEventListener('click', () => {
