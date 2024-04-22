@@ -13,7 +13,6 @@ const APP_KEY = '326753c7d2788295f7e0e911fcf5fdf7';
 let inputValue =  ''; 
 
 
-
 inputField.addEventListener('change', (e) => {
     inputValue = e.target.value;
     console.log(inputValue);
