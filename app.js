@@ -3,6 +3,7 @@ const addItemBtn = document.getElementById('addItemBtn');
 const itemList = document.getElementById('itemGrid');
 
 const recipesList = document.getElementById('recipesList');
+const resetBtn = document.getElementById('resetBtn');
 const addRecipeBtn = document.getElementById('addRecipeBtn');
 const searchRecipeBtn = document.getElementById('searchRecipeBtn');
 const inputField = document.getElementById('inputField');
@@ -45,7 +46,7 @@ function getRecipes() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            const recipes = data.hits;
+            const recipes = data.hits.slice(0, 5);
             recipes.map((item)=>{
                 const { label, url } = item.recipe;
                 recipesList.innerHTML += `<li><a class="link" href="${ url }" >${ label }</a></li>`
@@ -62,3 +63,8 @@ function addRecipe() {
         itemInput.value = '';
     }
 }
+
+resetBtn.addEventListener('click', () => {
+    recipesList.innerHTML = '';
+    inputField.value = '';
+});
