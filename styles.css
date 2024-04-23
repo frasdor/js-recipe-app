@@ -56,6 +56,7 @@ body {
     max-width: 800px;
     margin: 0 auto;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .recipe-app h1 {
@@ -136,7 +137,7 @@ ul #recipesList {
 
 #inputField {
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
