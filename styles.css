@@ -7,6 +7,7 @@
 
     --primary-color: #f76c6c;
     --secondary-color: #f76c6c73;
+    --tertiary-color: #333333;
     --white: #fff;
     --black: #000;
     --grey: #f9f9f9;
@@ -90,7 +91,7 @@ ul #recipesList {
 
 /* Other Styles */
 .my-pantry,
-.recipes,
+.saved-recipes,
 .meal-plan {
     margin: 10px;
     border: 1px solid var(--primary-color);
@@ -174,6 +175,19 @@ ul #recipesList {
     transition: 0.4s ease-in-out;
 }
 
+a {
+    text-decoration: none;
+    color: var(--tertiary-color);
+}
+
+button {
+    padding: 5px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 /* Media Queries */
 
