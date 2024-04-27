@@ -1,6 +1,7 @@
 
 
 const recipesList = document.getElementById('recipesList');
+const savedRecipesList = document.getElementById('savedRecipesList');
 const resetBtn = document.getElementById('resetBtn');
 const searchRecipeBtn = document.getElementById('searchRecipeBtn');
 const inputField = document.getElementById('inputField');
@@ -14,11 +15,15 @@ const APP_KEY = '326753c7d2788295f7e0e911fcf5fdf7';
 let inputValue = '';
 let itemToRemove = -1; // variable to track selected item (-1 means no choice)
 
+inputField.addEventListener('change', handleInputChange);
+//addItemBtn.addEventListener('click', addItem);
+searchRecipeBtn.addEventListener('click', searchRecipes);
+resetBtn.addEventListener('click', resetForm);
 
-inputField.addEventListener('change', (e) => {
+function handleInputChange(e) {
     inputValue = e.target.value;
     console.log(inputValue);
-});
+}
 
 searchRecipeBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -31,30 +36,31 @@ searchRecipeBtn.addEventListener('click', (e) => {
 resetBtn.addEventListener('click', () => {
     recipesList.innerHTML = '';
     inputField.value = '';
+});
+
+
+
+function searchRecipes(e) {
+    e.preventDefault();
+    const query = inputField.value.trim();
+    if (query !== '') {
+        recipesList.innerHTML = '';
+        getRecipes(query);
+        inputField.value = '';
+    }
 }
-);
 
+function resetForm() {
+    recipesList.innerHTML = '';
+    inputField.value = '';
+}
 
-
-function getRecipes() {
+function getRecipes(inputValue) {
     fetch(`https://api.edamam.com/search?q=${inputValue}&app_id=${APP_ID}&app_key=${APP_KEY}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            const recipes = data.hits.slice(0, 4);
-            recipes.forEach(item => {
-                const { label, url, image } = item.recipe;
-                const recipeItem = document.createElement('div');
-                const imageElement = document.createElement('img');
-                imageElement.src = image;
-                recipeItem.appendChild(imageElement);
-                const recipeLink = document.createElement('a');
-                recipeLink.classList.add('link');
-                recipeLink.href = url;
-                recipeLink.textContent = label;
-                recipeItem.appendChild(recipeLink);
-                recipesList.appendChild(recipeItem);
-            });
+            displayRecipes(data.hits.slice(0, 8));
         })
         .catch(error => {
             console.error('Error fetching recipes:', error);
